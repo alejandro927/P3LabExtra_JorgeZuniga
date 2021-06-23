@@ -1,0 +1,49 @@
+# Project: P3LabExtra_JorgeZuniga
+# Makefile created by Embarcadero Dev-C++ 6.3
+
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
+WINDRES  = windres.exe
+OBJ      = main.o Comida.o OrdenComida.o Orden.o Restaurante.o Carnes.o Sopa.o Refresco.o
+LINKOBJ  = main.o Comida.o OrdenComida.o Orden.o Restaurante.o Carnes.o Sopa.o Refresco.o
+LIBS     = -L"C:/Users/aleja/Desktop/lenguajes de progra/Embarcadero_Dev-Cpp_6.3_TDM-GCC_9.2_Setup/Dev-Cpp/TDM-GCC-64/lib" -L"C:/Users/aleja/Desktop/lenguajes de progra/Embarcadero_Dev-Cpp_6.3_TDM-GCC_9.2_Setup/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/lib" -static-libgcc -g3
+INCS     = -I"C:/Users/aleja/Desktop/lenguajes de progra/Embarcadero_Dev-Cpp_6.3_TDM-GCC_9.2_Setup/Dev-Cpp/TDM-GCC-64/include" -I"C:/Users/aleja/Desktop/lenguajes de progra/Embarcadero_Dev-Cpp_6.3_TDM-GCC_9.2_Setup/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"C:/Users/aleja/Desktop/lenguajes de progra/Embarcadero_Dev-Cpp_6.3_TDM-GCC_9.2_Setup/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include"
+CXXINCS  = -I"C:/Users/aleja/Desktop/lenguajes de progra/Embarcadero_Dev-Cpp_6.3_TDM-GCC_9.2_Setup/Dev-Cpp/TDM-GCC-64/include" -I"C:/Users/aleja/Desktop/lenguajes de progra/Embarcadero_Dev-Cpp_6.3_TDM-GCC_9.2_Setup/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"C:/Users/aleja/Desktop/lenguajes de progra/Embarcadero_Dev-Cpp_6.3_TDM-GCC_9.2_Setup/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include" -I"C:/Users/aleja/Desktop/lenguajes de progra/Embarcadero_Dev-Cpp_6.3_TDM-GCC_9.2_Setup/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include/c++"
+BIN      = P3LabExtra_JorgeZuniga.exe
+CXXFLAGS = $(CXXINCS) -g3
+CFLAGS   = $(INCS) -g3
+DEL      = C:\Users\aleja\Desktop\lenguajes de progra\Embarcadero_Dev-Cpp_6.3_TDM-GCC_9.2_Setup\Dev-Cpp\devcpp.exe INTERNAL_DEL
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${DEL} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+main.o: main.cpp
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+
+Comida.o: Comida.cpp
+	$(CPP) -c Comida.cpp -o Comida.o $(CXXFLAGS)
+
+OrdenComida.o: OrdenComida.cpp
+	$(CPP) -c OrdenComida.cpp -o OrdenComida.o $(CXXFLAGS)
+
+Orden.o: Orden.cpp
+	$(CPP) -c Orden.cpp -o Orden.o $(CXXFLAGS)
+
+Restaurante.o: Restaurante.cpp
+	$(CPP) -c Restaurante.cpp -o Restaurante.o $(CXXFLAGS)
+
+Carnes.o: Carnes.cpp
+	$(CPP) -c Carnes.cpp -o Carnes.o $(CXXFLAGS)
+
+Sopa.o: Sopa.cpp
+	$(CPP) -c Sopa.cpp -o Sopa.o $(CXXFLAGS)
+
+Refresco.o: Refresco.cpp
+	$(CPP) -c Refresco.cpp -o Refresco.o $(CXXFLAGS)
