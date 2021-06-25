@@ -8,8 +8,11 @@ class OrdenComida
 	public:
 		OrdenComida();
 		~OrdenComida();
-		
-		
+		OrdenComida(Comida* ,int );
+		Comida* getComidaO();
+		void setComida(Comida*);
+		int getCantidad();
+		void setCantidad(int);
 		
 	private:
 		Comida* comida;

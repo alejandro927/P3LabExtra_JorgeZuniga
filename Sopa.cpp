@@ -2,10 +2,11 @@
 
 Sopa::Sopa() {
 }
+
 Sopa::Sopa(string name,double prec,int idd,bool tieneArr) : Comida(name,prec,idd) {
 	this->tieneArroz = tieneArr;
-
 }
+
 Sopa::~Sopa() {
 }
 
