@@ -9,14 +9,13 @@ class Orden {
 	public:
 		Orden();
 		~Orden();
-		void addOrden(OrdenComida*);
-		void imprimirPagoTotal();
+		void addOrden(Comida* comida,int cantidad);
+		void imprimirPagoTotal(int);
 		Orden* copia();
 		Orden* operator+(Orden orden);
 		vector<OrdenComida*> getOrden();
 		void setOrden(OrdenComida*);
-		//Orden* operator+(int cantidad);
-		//OrdenComida* operator+(const Comida* &comida, const int &cantidad);
+		void eliminarOrden(int);
 
 	private:
 		vector<OrdenComida*>orden;

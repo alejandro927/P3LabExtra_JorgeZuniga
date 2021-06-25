@@ -7,40 +7,29 @@ Orden::~Orden() {
 }
 
 
-void Orden::imprimirPagoTotal() {
+void Orden::imprimirPagoTotal(int posicion) {
 	double total=0;
 	double impuesto=0;
-	Restaurante* restaurante = new Restaurante();
-	vector<Comida*> comida = restaurante->getMenuComidas();
-	for(int i=0; i<orden.size(); i++) {
-		OrdenComida* x = orden[i];
-		total = total + comida[i]->getPrecio();
-	}
-	impuesto = total * 0.15;
+	total = orden[posicion]->getComida()->getPrecio();
+	total = total*2;
+	impuesto = total*0.15;
 	total = total + impuesto;
 	cout<<"El impuesto es:"<<impuesto<<endl;
-	cout<<"El total a pagar es:"<<total;
+	cout<<"El total es:"<<total<<endl;
 }
 
-vector<OrdenComida*> Orden::getOrden(){
+vector<OrdenComida*> Orden::getOrden() {
 	return this->orden;
 }
 
-void Orden::setOrden(OrdenComida* ordenCom){
+void Orden::setOrden(OrdenComida* ordenCom) {
 	this->orden.push_back(ordenCom);
 }
 
-void Orden::addOrden(OrdenComida* ordenC){
-	orden.push_back(ordenC);
+void Orden::addOrden(Comida* comida,int cantidad) {
+	orden.push_back(new OrdenComida(comida,cantidad));
+	cout<<"Orden Agregada Exitosamente!!!"<<endl;
 }
-
-//lo intente pero no funciona y busque ayuda pero nadie sabia como hacerlo ni en internet me soluciono eso
-/*
-OrdenComida* Orden::operator+(Comida* const &comida, int const &cantidad) {
-	OrdenComida* x = new OrdenComida(this,cantidad);
-	return x;
-}
-*/
 
 Orden* Orden::operator+(Orden ordenX) {
 	Orden* newOrden = new Orden();
@@ -56,4 +45,8 @@ Orden* Orden::operator+(Orden ordenX) {
 	}
 	return newOrden;
 	delete newOrden;
+}
+
+void Orden::eliminarOrden(int posicion) {
+	orden.erase (orden.begin()+posicion);
 }

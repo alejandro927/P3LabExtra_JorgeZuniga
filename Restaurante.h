@@ -15,8 +15,6 @@ class Restaurante
 		vector<Comida*> getMenuComidas();
 		vector<Orden*> getOrdenes();
 		void eliminarComida(int);
-		void eliminarOrden(int);
-		OrdenComida* operator+(int cantidad);
 		
 	private:
 		vector <Comida*> menu;

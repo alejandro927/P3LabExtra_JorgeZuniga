@@ -9,7 +9,7 @@ class OrdenComida
 		OrdenComida();
 		~OrdenComida();
 		OrdenComida(Comida* ,int );
-		Comida* getComidaO();
+		Comida* getComida();
 		void setComida(Comida*);
 		int getCantidad();
 		void setCantidad(int);

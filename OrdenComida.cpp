@@ -12,7 +12,7 @@ OrdenComida::~OrdenComida() {
 
 }
 
-Comida* OrdenComida::getComidaO() {
+Comida* OrdenComida::getComida() {
 	return this->comida;
 }
 

@@ -8,35 +8,7 @@
 #include <vector>
 using namespace std;
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
-/*
-int miniMenuModificarComidaSopa() {
-	int opcion=0;
-	cout<<"=====Mini Menu para modificar Comida====="<<endl;
-	cout<<"1) Nombre"<<endl;
-	cout<<"2) Precio"<<endl;
-	cout<<"3) Id"<<endl;
-	cout<<"4) Tiene arroz"<<endl;
-	cout<<"Ingrese su opcion:";
-	cin>>opcion;
-	cout<<endl;
-	return opcion;
-}
 
-
-int miniMenuModificarComidaCarne() {
-	int opcion=0;
-	cout<<"=====Mini Menu para modificar Comida====="<<endl;
-	cout<<"1) Nombre"<<endl;
-	cout<<"2) Precio"<<endl;
-	cout<<"3) Id"<<endl;
-	cout<<"4) Es carne"<<endl;
-	cout<<"5) Termino"<<endl;
-	cout<<"Ingrese su opcion:";
-	cin>>opcion;
-	cout<<endl;
-	return opcion;
-}
-*/
 int menuModificar() {
 	int opcion=0;
 	cout<<"=====Mini Menu para modificar Comida====="<<endl;
@@ -53,8 +25,9 @@ int menuModificar() {
 int miniMenuModificarOrden() {
 	int opcion=0;
 	cout<<"=====Mini Menu para modificar Orden====="<<endl;
-	cout<<"Modificar Cantidad de OrdenComida"<<endl;
-	cout<<"Eliminar OrdenComida"<<endl;
+	cout<<"1) Modificar la Comida"<<endl;
+	cout<<"2) Modificar Cantidad"<<endl;
+	cout<<"3) Salida"<<endl;
 	cout<<"Ingrese su opcion:";
 	cin>>opcion;
 	cout<<endl;
@@ -92,6 +65,7 @@ int menu() {
 }
 
 int main(int argc, char** argv) {
+	Orden* orden = new Orden();
 	Restaurante* restaurante = new Restaurante();
 	int opcion = 0;
 	while(opcion != 8) {
@@ -275,57 +249,117 @@ int main(int argc, char** argv) {
 			case 4: {
 				int cantidad=0;
 				int indice=0;
-					vector<Comida*> aux2 = restaurante->getMenuComidas();
-					for(int i=0; i<aux2.size(); i++) {
-						cout<<i<<") "<<"Nombre:"<<aux2[i]->getNombre()<<"  Precio:"<<aux2[i]->getPrecio() << "  ID:"<<aux2[i]->getId()<<endl;
-					}	
-					/*
-					//elija la pisicion de la comida a ordenar
-					//Ingrese la contidad
-					//Comida* comid = new Comida();
-					//comid = aux2[posicion] + cant;
-					OrdenComida* x = new OrdenComida();
-					x = restaurante->aux2[indice] + cantidad;
-					delete x;
-					*/
-					
+				vector<Comida*> aux2 = restaurante->getMenuComidas();
+				for(int i=0; i<aux2.size(); i++) {
+					cout<<i<<") "<<"Nombre:"<<aux2[i]->getNombre()<<"  Precio:"<<aux2[i]->getPrecio() << "  ID:"<<aux2[i]->getId()<<endl;
+				}
+				cout<<"Ingrese la posicion de la comida que desea:"<<endl;
+				cin>>indice;
+				cout<<"Ingrese la cantidad que desea ordenar:"<<endl;
+				cin>>cantidad;
+				while(cantidad <= 0) {
+					cout<<"Numero no valido ingrese nuevamente:"<<endl;
+					cin>>cantidad;
+				}
+
+				orden->addOrden(aux2[indice],cantidad);
 				break;
 			}
 			case 5: {
-				
-				
+				vector<OrdenComida*> x = orden->getOrden();
+				if(x.empty()) {
+					cout<<"No se puede modificar si no hay nada por modificar!!!"<<endl;
+					cout<<"Ingrese algo primero mejor gracias!!!"<<endl;
+				} else {
+					cout<<"====Modificar Orden===="<<endl;
+					int indice=0;
+					vector<OrdenComida*> aux2 = orden->getOrden();
+					for(int i=0; i<aux2.size(); i++) {
+						cout<<i<<") "<<"Nombre:"<<aux2[i]->getComida()->getNombre() <<"  Precio:"<<aux2[i]->getComida()->getPrecio() <<"  Cantidad:"<<aux2[i]->getCantidad()<<endl;
+					}
+					cout<<"\nIngrese el indice a Modificar:";
+					cin>>indice;
+					int opcion5 =0;
+					while(opcion5 != 3) {
+						opcion5 = miniMenuModificarOrden();
+						switch(opcion5) {
+							case 1: {
+								int indice2=0;
+								vector<Comida*> aux3 = restaurante->getMenuComidas();
+								for(int i=0; i<aux3.size(); i++) {
+									cout<<i<<") "<<"Nombre:"<<aux3[i]->getNombre()<<"  Precio:"<<aux3[i]->getPrecio() << "  ID:"<<aux3[i]->getId()<<endl;
+								}
+								cout<<"\nIngrese el indice de la comida que desea en su orden:";
+								cin>>indice2;
+								aux2[indice]->setComida(aux3[indice2]);
+								cout<<"\nOrden modificada exitosamente!!!"<<endl;
+								break;
+							}
+							case 2: {
+								int cantidad=0;
+								cout<<"\nIngrese la nueva cantidad:";
+								cin>>cantidad;
+								aux2[indice]->setCantidad(cantidad);
+								cout<<"\nOrden modificada exitosamente!!!"<<endl;
+								break;
+							}
+							default: {
+								cout<<"Opcion no valida!!"<<endl;
+								break;
+							}
+						}
+					}
+
+				}
+
 				break;
 			}
 			case 6: {
-				vector<Orden*> x = restaurante->getOrdenes();
+
+				vector<OrdenComida*> x = orden->getOrden();
 				if(x.empty()) {
 					cout<<"No se puede eliminar si no hay nada por eliminar!!!"<<endl;
 					cout<<"Ingrese algo primero mejor gracias!!!"<<endl;
 				} else {
 					cout<<"====Eliminar Orden===="<<endl;
 					int indice=0;
-					vector<Orden*> aux2 = restaurante->getOrdenes();
+					vector<OrdenComida*> aux2 = orden->getOrden();
 					for(int i=0; i<aux2.size(); i++) {
-						//cout<<i<<") "<<"Nombre:"<<aux2[i]->getNombre()<<"  Precio:"<<aux2[i]->getPrecio() << "  ID:"<<aux2[i]->getId()<<endl;
+						cout<<i<<") "<<"Nombre:"<<aux2[i]->getComida()->getNombre() <<"  Precio:"<<aux2[i]->getComida()->getPrecio() <<"  Cantidad:"<<aux2[i]->getCantidad()<<endl;
 					}
 					cout<<"\nIngrese el indice a eliminar:";
 					cin>>indice;
-					restaurante->eliminarOrden(indice);
+					orden->eliminarOrden(indice);
 					cout<<"Se elimino exitosamente!!!"<<endl;
 				}
 				break;
 			}
 			case 7: {
 
-
+				vector<OrdenComida*> x = orden->getOrden();
+				if(x.empty()) {
+					cout<<"Ingrese algo primero mejor gracias!!!"<<endl;
+				} else {
+					cout<<"====Total de la Orden===="<<endl;
+					int indice=0;
+					vector<OrdenComida*> aux2 = orden->getOrden();
+					for(int i=0; i<aux2.size(); i++) {
+						cout<<i<<") "<<"Nombre:"<<aux2[i]->getComida()->getNombre() <<"  Precio:"<<aux2[i]->getComida()->getPrecio() <<"  Cantidad:"<<aux2[i]->getCantidad()<<endl;
+					}
+					cout<<"\nIngrese el indice saber el total a pagar:";
+					cin>>indice;
+					orden->imprimirPagoTotal(indice);
+					cout<<endl;
+				}
 				break;
 			}
 			case 8: {
-				cout<<"\nGracias por usar el app!!!\nQue tenga buen dia!!";
+				cout<<"\nGracias por su visata!!!\nVuelva pronto!!";
 				break;
 			}
 		}
 	}
+	delete orden;
 	delete restaurante;
 	return 0;
 }
