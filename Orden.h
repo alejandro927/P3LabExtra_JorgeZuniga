@@ -2,6 +2,7 @@
 #define ORDEN_H
 #include <iostream>
 #include "OrdenComida.h"
+
 #include <vector>
 using namespace std;
 class Orden {
@@ -11,11 +12,11 @@ class Orden {
 		void addOrden(OrdenComida*);
 		void imprimirPagoTotal();
 		Orden* copia();
-		Orden* operator+(Orden orden); 
+		Orden* operator+(Orden orden);
 		vector<OrdenComida*> getOrden();
 		void setOrden(OrdenComida*);
-		Orden* operator+(int cantidad);
-	
+		//Orden* operator+(int cantidad);
+		//OrdenComida* operator+(const Comida* &comida, const int &cantidad);
 
 	private:
 		vector<OrdenComida*>orden;

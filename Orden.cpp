@@ -34,10 +34,11 @@ void Orden::addOrden(OrdenComida* ordenC){
 	orden.push_back(ordenC);
 }
 
+//lo intente pero no funciona y busque ayuda pero nadie sabia como hacerlo ni en internet me soluciono eso
 /*
-Comida* Orden::operator+(int cantidad) {
+OrdenComida* Orden::operator+(Comida* const &comida, int const &cantidad) {
 	OrdenComida* x = new OrdenComida(this,cantidad);
-	orden.push_back(x);
+	return x;
 }
 */
 

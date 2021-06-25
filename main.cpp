@@ -288,6 +288,7 @@ int main(int argc, char** argv) {
 					x = restaurante->aux2[indice] + cantidad;
 					delete x;
 					*/
+					
 				break;
 			}
 			case 5: {
@@ -296,7 +297,7 @@ int main(int argc, char** argv) {
 				break;
 			}
 			case 6: {
-				vector<Comida*> x = restaurante->getMenuComidas();
+				vector<Orden*> x = restaurante->getOrdenes();
 				if(x.empty()) {
 					cout<<"No se puede eliminar si no hay nada por eliminar!!!"<<endl;
 					cout<<"Ingrese algo primero mejor gracias!!!"<<endl;
