@@ -11,8 +11,8 @@ void Orden::imprimirPagoTotal(int posicion) {
 	double total=0;
 	double impuesto=0;
 	total = orden[posicion]->getComida()->getPrecio();
-	total = total*2;
-	impuesto = total*0.15;
+	total = total * orden[posicion]->getCantidad();
+	impuesto = total * 0.15;
 	total = total + impuesto;
 	cout<<"El impuesto es:"<<impuesto<<endl;
 	cout<<"El total es:"<<total<<endl;
